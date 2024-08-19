@@ -1,16 +1,35 @@
-# Soldeer Minimal
+# SOLX
 
-**Minimal Forge, Soldeer, and Bun template.**
+**Solidity × Any-Language Transpiler for Foundry.**
 
-Soldeer Minimal uses Soldeer package manager instead of git modules and can run TypeScript out of box.
+Write Solidity AND **any other programming language** <ins>at the same time</ins>!
+
+<img src="./demo.gif"></img>
 
 ## Usage
+
+> [!IMPORTANT]
+> Proof of concept. For research purposes only.
+
+**Clone**
+
+```shell
+git clone https://github.com/ZeroEkkusu/solx
+```
 
 **Install**
 
 ```shell
 soldeer install & bun install
 ```
+
+**Hook**
+
+```
+source solx/hooks.sh
+```
+
+This will hook SOLX transpiler to Forge.
 
 **Build**
 
@@ -23,6 +42,43 @@ forge build
 ```shell
 forge test
 ```
+
+**Experiment**
+
+> [!NOTE]
+> Try it out: [`test/Example.solx`](./test/Example.solx)
+
+ 
+
+Specify <ins>variables to sync</ins> between Solidity and TypeScript:
+
+```solidity
+uint256 a;
+// @typescript-start (uint256 a)
+a++;
+// @typescript-end ()
+assertEq(a, 1);
+```
+
+Specify <ins>variables to clone</ins> from TypeScript:
+
+```solidity
+uint256 a = 1;
+// @typescript-start ()
+const b = 1;
+// @typescript-end (uint256 b)
+assertEq(a, b);
+```
+
+Use `console.log` in TypeScript:
+
+```solidity
+// @typescript-start ()
+console.log('👀');
+// @typescript-end ()
+```
+
+Only TypeScript is supported currently.
 
 ## License
 ​

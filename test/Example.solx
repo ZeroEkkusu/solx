@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
+pragma solidity ^0.8.26;
+
+import "forge-std/Test.sol";
+
+contract PikachuTest is Test {
+    // Let's catch Pikachu ⚡️ in .solx!
+
+    function test_catchPikachu() public {
+        string memory myPokemon;
+        uint256 randomness = vm.randomUint(0, 49);
+        // @typescript-start (string myPokemon, uint256 randomness)
+        console.log("Wow, I can write TypeScript inside Solidity!");
+        const response = await fetch("https://dummyapi.online/api/pokemon");
+        const json = await response.json();
+        myPokemon = json[randomness].pokemon;
+        const isPikachu: boolean = myPokemon === "Pikachu";
+        // @typescript-end (bool isPikachu)
+        console.log("I've caught", string.concat(myPokemon, isPikachu ? unicode" 🥹" : "."));
+        // Did you notice that isPikachu was not defined? 😱
+    }
+}
