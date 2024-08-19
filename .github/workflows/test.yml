@@ -34,18 +34,19 @@ jobs:
           forge fmt --check
         id: fmt
 
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Run Forge build
         run: |
           forge --version
           forge soldeer install
+          bun install
+          bun solx/transpiler.ts
           forge build --sizes
         id: build
 
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v2
-
       - name: Run Forge tests
         run: |
-          bun install
           forge test -vvv
         id: test

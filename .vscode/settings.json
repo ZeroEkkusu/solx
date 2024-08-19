@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "*.solx": "solidity"
-  }
+  },
+  "workbench.colorTheme": "Default Dark Modern"
 }

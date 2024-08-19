@@ -1,7 +1,5 @@
 # SOLX
 
-**Solidity × Any-Language Transpiler for Foundry.**
-
 Write Solidity AND **any other programming language** <ins>at the same time</ins>!
 
 <img src="./demo.gif"></img>
@@ -50,7 +48,7 @@ forge test
 
  
 
-Specify <ins>variables to sync</ins> between Solidity and TypeScript:
+Specify variables to **sync** between Solidity and TypeScript:
 
 ```solidity
 uint256 a;
@@ -60,7 +58,7 @@ a++;
 assertEq(a, 1);
 ```
 
-Specify <ins>variables to clone</ins> from TypeScript:
+Specify variables to **clone** from TypeScript:
 
 ```solidity
 uint256 a = 1;
