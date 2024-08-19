@@ -43,12 +43,9 @@ forge test
 
 **Experiment**
 
-> [!NOTE]
-> Try it out: [`test/Example.solx`](./test/Example.solx)
+👉 Try it out: [`test/Example.solx`](./test/Example.solx)
 
- 
-
-Specify variables to **sync** between Solidity and TypeScript:
+Specify variables to sync between Solidity and TypeScript:
 
 ```solidity
 uint256 a;
@@ -58,7 +55,7 @@ a++;
 assertEq(a, 1);
 ```
 
-Specify variables to **clone** from TypeScript:
+Specify variables to clone from TypeScript:
 
 ```solidity
 uint256 a = 1;
