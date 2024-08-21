@@ -1,13 +1,19 @@
 # SOLX
 
-Write Solidity AND **any other programming language** <ins>at the same time</ins>!
+Write Solidity AND **any other programming language** <ins>at the same time</ins> in Foundry tests and scripts!
 
 <img src="./demo.gif"></img>
 
 ## Usage
 
-> [!IMPORTANT]
-> Proof of concept. For research purposes only.
+> [!CAUTION]
+> This is an experimental proof of concept. Do not use in development or production environments.
+> SOLX is designed to work exclusively in Foundry's local EVM and <ins>cannot be used for actual smart contracts</ins>.
+
+<details>
+<summary><b>I have read and understood the above warning. Show me the usage instructions.</b></summary>
+
+<br>
 
 **Clone**
 
@@ -27,8 +33,6 @@ soldeer install & bun install
 source solx/hooks.sh
 ```
 
-This will hook SOLX transpiler to Forge.
-
 **Build**
 
 ```shell
@@ -43,9 +47,9 @@ forge test
 
 **Experiment**
 
-👉 Try it out: [`test/Example.solx`](./test/Example.solx)
+[Playground ↗](./test/Example.solx)
 
-Specify variables to sync between Solidity and TypeScript:
+Sync variables between Solidity and TypeScript:
 
 ```solidity
 uint256 a;
@@ -55,7 +59,7 @@ a++;
 assertEq(a, 1);
 ```
 
-Specify variables to clone from TypeScript:
+Clone variables from TypeScript:
 
 ```solidity
 uint256 a = 1;
@@ -65,15 +69,17 @@ const b = 1;
 assertEq(a, b);
 ```
 
-Use `console.log` in TypeScript:
+`console.log` in TypeScript:
 
 ```solidity
 // @typescript-start ()
-console.log('👀');
+console.log("solx");
 // @typescript-end ()
 ```
 
 Only TypeScript is supported currently.
+
+</details>
 
 ## License
 ​
