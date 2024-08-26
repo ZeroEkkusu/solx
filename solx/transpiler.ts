@@ -15,18 +15,31 @@ function processSolidityFile(inputPath: string): void {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  const outputSolPath = path.join(
-    outputDir,
-    path.basename(inputPath).replace(".solx", ".sol")
-  );
-  const outputTsPath = path.join(outputDir, "example.ts");
+  if (solidity) {
+    // Write the processed Solidity file
+    const outputSolPath = path.join(
+      outputDir,
+      path.basename(inputPath).replace(".solx", ".sol")
+    );
+    fs.writeFileSync(outputSolPath, solidity);
+  }
 
-  fs.writeFileSync(outputSolPath, solidity);
-  fs.writeFileSync(outputTsPath, typescript);
+  if (typescript) {
+    // Write the TypeScript file if it exists
+    const outputTsPath = path.join(outputDir, "example.ts");
+    fs.writeFileSync(outputTsPath, typescript);
+  }
 
-  /*console.log(`Processed ${inputPath}`);
+  // Exit silently if no TypeScript block was found
+  if (!typescript) {
+    return;
+  }
+
+  /*
+  console.log(`Processed ${inputPath}`);
   console.log(`Generated ${outputSolPath}`);
-  console.log(`Generated ${outputTsPath}`);*/
+  console.log(`Generated ${outputTsPath}`);
+  */
 }
 
 function extractTypeScriptBlock(content: string): ProcessedContent {
@@ -35,7 +48,8 @@ function extractTypeScriptBlock(content: string): ProcessedContent {
   const match = tsBlockRegex.exec(content);
 
   if (!match) {
-    throw new Error("No TypeScript block found in the Solidity file.");
+    // If no TypeScript block is found, return the content as Solidity only
+    return { solidity: content, typescript: "" };
   }
 
   const [fullMatch, inputVars, tsCode, outputVars] = match;
